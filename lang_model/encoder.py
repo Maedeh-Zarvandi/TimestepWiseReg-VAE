@@ -57,9 +57,7 @@ class Encoder(nn.Module):
         return length.to(dtype=torch.float)
 
     def forward(self, src):
-        # src = [src sent len, batch size]
         embedded = self.dropout(self.embedding(src))
-        # embedded = [src sent len, batch size, emb dim]
         mu_ = []
         logvar_ = []
         hx = None
