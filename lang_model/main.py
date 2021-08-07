@@ -60,6 +60,7 @@ args = parser.parse_args()
 
 print(args)
 
+
 base_path = "./lang_model"
 print("base_path=", base_path)
 
@@ -114,11 +115,9 @@ torch.backends.cudnn.deterministic = True
 device = torch.device('cuda:'+args.gpu_id if torch.cuda.is_available()
                       and not args.no_cuda else 'cpu')
 
-
 dataloader_train = BatchIter(Train, batch_size)
 dataloader_valid = BatchIter(Valid, batch_size)
 dataloader_test = BatchIter(Test, batch_size)
-
 
 encoder = Encoder(voca_dim, emb_dim, hid_dim, args.zdim, args.layers, args.dropout, 
                   rnn_type=args.rnn_type, 
