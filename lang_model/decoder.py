@@ -8,10 +8,6 @@ import math
 import numpy as np
 
 
-
-
-
-
 class Decoder(nn.Module):
     def __init__(self, output_dim, emb_dim, hid_dim, z_dim, n_layers, dropout, bidirectional=False, teacher_force=0.5, rnn_type='lstm', z_mode=None, setting=None, device=None):
         super(Decoder, self).__init__()
@@ -73,11 +69,8 @@ class Decoder(nn.Module):
         return prediction
 
     def singledecode(self, input, hidden, cell, lat_z=None):
-        # first input to the decoder is the <sos> tokens
         input = input.unsqueeze(0)
         
-        # input = [1, batch size]
-
         embedded = self.dropout(self.embedding(input))
         # embedded = [1, batch size, emb dim]
 
